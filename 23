@@ -1,0 +1,1402 @@
+darko#COMPUTE_WH@(no database).(no schema)> create or replace d
+                                           atabase ff_23;
+
++--------------------------------------+
+| status                               |
+|--------------------------------------|
+| Database FF_23 successfully created. |
++--------------------------------------+
+1 Row(s) produced. Time Elapsed: 1.146s
+darko#COMPUTE_WH@FF_23.PUBLIC> select current_database(), curre
+                              nt_schema();
+
++--------------------+------------------+
+| CURRENT_DATABASE() | CURRENT_SCHEMA() |
+|--------------------+------------------|
+| FF_23              | PUBLIC           |
++--------------------+------------------+
+1 Row(s) produced. Time Elapsed: 0.069s
+darko#COMPUTE_WH@FF_23.PUBLIC> create or replace warehouse ff_2
+                              3_wh with
+                                warehouse_size='X-SMALL'
+                                auto_suspend = 180
+                                auto_resume = true
+                                initially_suspended=true;
+
+darko#FF_23_WH@FF_23.PUBLIC> create or replace table ff_table (
+                            id INT PRIMARY KEY,
+                                first_name VARCHAR(255),
+                                last_name VARCHAR(255),
+                                email VARCHAR(255),
+                                gender VARCHAR(50),
+                                ip_address VARCHAR(255)
+                            );
+
+
++--------------------------------------+
+| status                               |
+|--------------------------------------|
+| Table FF_TABLE successfully created. |
++--------------------------------------+
+1 Row(s) produced. Time Elapsed: 14.701s
+darko#FF_23_WH@FF_23.PUBLIC>
+darko#FF_23_WH@FF_23.PUBLIC> put file://C:\Users\darko\Download
+                            s\frostyfriday23\frostyfriday23\dat
+                            a_batch_1-*1.csv @ff_23.public.%ff_
+                            table;
+
++----------------------+-------------------------+-------------+-------------+--------------------+--------------------+----------+---------+
+| source               | target                  | source_size | target_size | source_compression | target_compression | status
+  | message |
+|----------------------+-------------------------+-------------+-------------+--------------------+--------------------+----------+---------|
+| data_batch_1-1.csv   | data_batch_1-1.csv.gz   |         132 |         144 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-101.csv | data_batch_1-101.csv.gz |         194 |         128 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-11.csv  | data_batch_1-11.csv.gz  |         141 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-111.csv | data_batch_1-111.csv.gz |         146 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-121.csv | data_batch_1-121.csv.gz |         133 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-131.csv | data_batch_1-131.csv.gz |         147 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-141.csv | data_batch_1-141.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-151.csv | data_batch_1-151.csv.gz |         136 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-161.csv | data_batch_1-161.csv.gz |         130 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-171.csv | data_batch_1-171.csv.gz |         131 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-181.csv | data_batch_1-181.csv.gz |         144 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-191.csv | data_batch_1-191.csv.gz |         128 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-201.csv | data_batch_1-201.csv.gz |         139 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-21.csv  | data_batch_1-21.csv.gz  |         144 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-211.csv | data_batch_1-211.csv.gz |         124 |         144 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-221.csv | data_batch_1-221.csv.gz |         133 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-231.csv | data_batch_1-231.csv.gz |         128 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-241.csv | data_batch_1-241.csv.gz |         141 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-251.csv | data_batch_1-251.csv.gz |         131 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-261.csv | data_batch_1-261.csv.gz |         137 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-271.csv | data_batch_1-271.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-281.csv | data_batch_1-281.csv.gz |         140 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-291.csv | data_batch_1-291.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-301.csv | data_batch_1-301.csv.gz |         140 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-31.csv  | data_batch_1-31.csv.gz  |         128 |         144 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-311.csv | data_batch_1-311.csv.gz |         138 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-321.csv | data_batch_1-321.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-331.csv | data_batch_1-331.csv.gz |         143 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-341.csv | data_batch_1-341.csv.gz |         131 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-351.csv | data_batch_1-351.csv.gz |         127 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-361.csv | data_batch_1-361.csv.gz |         131 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-371.csv | data_batch_1-371.csv.gz |         136 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-381.csv | data_batch_1-381.csv.gz |         142 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-391.csv | data_batch_1-391.csv.gz |         136 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-401.csv | data_batch_1-401.csv.gz |         136 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-41.csv  | data_batch_1-41.csv.gz  |         131 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-411.csv | data_batch_1-411.csv.gz |         130 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-421.csv | data_batch_1-421.csv.gz |         140 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-431.csv | data_batch_1-431.csv.gz |         138 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-441.csv | data_batch_1-441.csv.gz |         137 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-451.csv | data_batch_1-451.csv.gz |         130 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-461.csv | data_batch_1-461.csv.gz |         136 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-471.csv | data_batch_1-471.csv.gz |         133 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-481.csv | data_batch_1-481.csv.gz |         129 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-491.csv | data_batch_1-491.csv.gz |         129 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-501.csv | data_batch_1-501.csv.gz |         139 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-51.csv  | data_batch_1-51.csv.gz  |         139 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-511.csv | data_batch_1-511.csv.gz |         138 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-521.csv | data_batch_1-521.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-531.csv | data_batch_1-531.csv.gz |         126 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-541.csv | data_batch_1-541.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-551.csv | data_batch_1-551.csv.gz |         130 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-561.csv | data_batch_1-561.csv.gz |         133 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-571.csv | data_batch_1-571.csv.gz |         143 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-581.csv | data_batch_1-581.csv.gz |         130 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-591.csv | data_batch_1-591.csv.gz |         130 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-601.csv | data_batch_1-601.csv.gz |         129 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-61.csv  | data_batch_1-61.csv.gz  |         127 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-611.csv | data_batch_1-611.csv.gz |         133 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-621.csv | data_batch_1-621.csv.gz |         136 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-631.csv | data_batch_1-631.csv.gz |         131 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-641.csv | data_batch_1-641.csv.gz |         139 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-651.csv | data_batch_1-651.csv.gz |         128 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-661.csv | data_batch_1-661.csv.gz |         125 |         144 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-671.csv | data_batch_1-671.csv.gz |         139 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-681.csv | data_batch_1-681.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-691.csv | data_batch_1-691.csv.gz |         140 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-701.csv | data_batch_1-701.csv.gz |         127 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-71.csv  | data_batch_1-71.csv.gz  |         125 |         144 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-711.csv | data_batch_1-711.csv.gz |         136 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-721.csv | data_batch_1-721.csv.gz |         139 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-731.csv | data_batch_1-731.csv.gz |         141 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-741.csv | data_batch_1-741.csv.gz |         146 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-751.csv | data_batch_1-751.csv.gz |         133 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-761.csv | data_batch_1-761.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-771.csv | data_batch_1-771.csv.gz |         136 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-781.csv | data_batch_1-781.csv.gz |         127 |         144 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-791.csv | data_batch_1-791.csv.gz |         131 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-801.csv | data_batch_1-801.csv.gz |         133 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-81.csv  | data_batch_1-81.csv.gz  |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-811.csv | data_batch_1-811.csv.gz |         137 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-821.csv | data_batch_1-821.csv.gz |         139 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-831.csv | data_batch_1-831.csv.gz |         136 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-841.csv | data_batch_1-841.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-851.csv | data_batch_1-851.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-861.csv | data_batch_1-861.csv.gz |         134 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-871.csv | data_batch_1-871.csv.gz |         143 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-881.csv | data_batch_1-881.csv.gz |         136 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-891.csv | data_batch_1-891.csv.gz |         139 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-901.csv | data_batch_1-901.csv.gz |         141 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-91.csv  | data_batch_1-91.csv.gz  |         135 |         144 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-911.csv | data_batch_1-911.csv.gz |         139 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-921.csv | data_batch_1-921.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-931.csv | data_batch_1-931.csv.gz |         138 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-941.csv | data_batch_1-941.csv.gz |         136 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-951.csv | data_batch_1-951.csv.gz |         130 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-961.csv | data_batch_1-961.csv.gz |         131 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-971.csv | data_batch_1-971.csv.gz |         132 |         160 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-981.csv | data_batch_1-981.csv.gz |         122 |         144 | NONE               | GZIP               | UPLOADED |         |
+| data_batch_1-991.csv | data_batch_1-991.csv.gz |         137 |         160 | NONE               | GZIP               | UPLOADED |         |
++----------------------+-------------------------+-------------+-------------+--------------------+--------------------+----------+---------+
+100 Row(s) produced. Time Elapsed: 57.583s
+
+darko#FF_23_WH@FF_23.PUBLIC> copy into FF_TABLE from @ff_23.pub
+                            lic.%ff_table
+
+                            file_format = (type = csv field_opt
+                            ionally_enclosed_by='"')
+                            pattern = '.data_batch_1-*1.csv.gz'
+                            on_error = 'skip_file';
+
++---------------------------------------+
+| status                                |
+|---------------------------------------|
+| Copy executed with 0 files processed. |
++---------------------------------------+
+1 Row(s) produced. Time Elapsed: 1.061s
+
+darko#FF_23_WH@FF_23.PUBLIC>  copy into FF_TABLE from @ff_23.pu
+                            blic.%ff_table file_format = (type
+                            = csv field_optionally_enclosed_by=
+                            '"')
+                            pattern = '.*.csv.gz' on_error = 's
+                            kip_file';
+
++-------------------------+-------------+-------------+-------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+-----------------------+-------------------------+
+| file                    | status      | rows_parsed | rows_loaded | error_limit | errors_seen | first_error
+
+
+     | first_error_line | first_error_character | first_error_column_name |
+|-------------------------+-------------+-------------+-------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+-----------------------+-------------------------|
+| data_batch_1-141.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-101.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           2 | Number of columns in file (1) does not match that of the corresponding table (6), use file format option error_on_column_count_mismatch=false to ignore this error |                2 |                     1 | "FF_TABLE"["ID":1]      |
+| data_batch_1-1.csv.gz   | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-111.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-121.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-221.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-161.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-21.csv.gz  | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-201.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-181.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-131.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-151.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-11.csv.gz  | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-271.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-291.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-231.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-301.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-191.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-171.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-211.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-251.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-351.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-331.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-31.csv.gz  | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-281.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-261.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-241.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-321.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-361.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-341.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-391.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-421.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-311.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-371.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-381.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-41.csv.gz  | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-431.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-401.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-461.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-501.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-411.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-441.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-451.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-481.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-51.csv.gz  | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-471.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-541.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-491.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-511.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-531.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-581.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-571.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-521.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-611.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-551.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-601.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-561.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-661.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-591.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-631.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-61.csv.gz  | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-691.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-621.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-681.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-721.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-711.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-671.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-651.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-641.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-731.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-751.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-81.csv.gz  | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-821.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-761.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-741.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-71.csv.gz  | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-701.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-781.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-811.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-831.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-891.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-771.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-791.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-861.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-801.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-871.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-841.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-931.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-961.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-901.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-851.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-881.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-91.csv.gz  | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-911.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-921.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-941.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-951.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-971.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-991.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
+| data_batch_1-981.csv.gz | LOAD_FAILED |           2 |
+  0 |           1 |           1 | Numeric value 'id' is not recognized
+
+     |                1 |                     2 | "FF_TABLE"["ID":1]      |
++-------------------------+-------------+-------------+-------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+-----------------------+-------------------------+
+darko#FF_23_WH@FF_23.PUBLIC>
+darko#FF_23_WH@FF_23.PUBLIC>
+darko#FF_23_WH@FF_23.PUBLIC>
+darko#FF_23_WH@FF_23.PUBLIC>  copy into FF_TABLE from @ff_23.pu
+                            blic.%ff_table file_format = (type
+                            = 'csv' skip_header =1 field_option
+                            ally_enclosed_by='"')
+                            pattern = '.*.csv.gz' on_error = 's
+                            kip_file' ;
+
++-------------------------+-------------+-------------+-------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+-----------------------+-------------------------+
+| file                    | status      | rows_parsed | rows_loaded | error_limit | errors_seen | first_error
+
+
+     | first_error_line | first_error_character | first_error_column_name |
+|-------------------------+-------------+-------------+-------------+-------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+-----------------------+-------------------------|
+| data_batch_1-121.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-181.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-11.csv.gz  | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-251.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-321.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-401.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-171.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-461.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-531.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-241.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-61.csv.gz  | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-311.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-681.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-391.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-791.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-471.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-851.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-541.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-921.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-641.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-701.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-761.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-861.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-931.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-151.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-221.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-301.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-381.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-451.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-511.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-601.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-671.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-731.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-81.csv.gz  | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-881.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-961.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-111.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-141.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-211.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-201.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-291.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-361.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-271.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-431.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-341.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-521.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-411.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-591.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-491.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-631.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-561.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-711.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-651.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-1.csv.gz   | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-781.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-741.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-841.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-811.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-21.csv.gz  | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-91.csv.gz  | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-891.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-281.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-981.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-951.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-351.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-421.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-501.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-571.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-661.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-691.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-751.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-821.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-901.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-971.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-131.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-191.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-261.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-331.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-41.csv.gz  | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-481.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-551.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-611.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-71.csv.gz  | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-771.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-101.csv.gz | LOAD_FAILED |           1 |
+  0 |           1 |           1 | Number of columns in file (1) does not match that of the corresponding table (6), use file format option error_on_column_count_mismatch=false to ignore this error |                2 |                   132 | "FF_TABLE"["ID":1]      |
+| data_batch_1-831.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-161.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-911.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-231.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-991.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-31.csv.gz  | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-371.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-441.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-51.csv.gz  | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-581.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-621.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-721.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-801.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-871.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+
+
+     |             NULL |                  NULL | NULL
+          |
+| data_batch_1-941.csv.gz | LOADED      |           1 |
+  1 |           1 |           0 | NULL
+darko#FF_23_WH@FF_23.PUBLIC> select * from FF_TABLE;
+
++-----+------------+----------------+---------------------------------+-------------+-----------------+
+|  ID | FIRST_NAME | LAST_NAME      | EMAIL                           | GENDER      | IP_ADDRESS      |
+|-----+------------+----------------+---------------------------------+-------------+-----------------|
+| 121 | Elizabet   | Coyish         | ecoyish3c@tmall.com             | Female      | 62.162.178.53   |
+| 181 | Red        | Patterfield    | rpatterfield50@biblegateway.com | Male        | 76.206.162.242  |
+| 251 | Darius     | Hencke         | dhencke6y@foxnews.com           | Male        | 238.39.103.10   |
+| 321 | Ganny      | Mesias         | gmesias8w@bloomberg.com         | Male        | 251.219.131.2   |
+| 401 | Taffy      | Lomond         | tlomondb4@sciencedirect.com     | Female      | 14.166.35.5     |
+| 461 | Krisha     | Fishburn       | kfishburncs@oracle.com          | Male        | 109.254.152.207 |
+| 531 | Irvin      | Burdus         | iburduseq@uiuc.edu              | Male        | 24.51.37.210    |
+|  61 | Nigel      | Drury          | ndrury1o@senate.gov             | Male        | 195.145.93.187  |
+| 681 | Tucky      | Kuhlen         | tkuhleniw@vkontakte.ru          | Male        | 158.67.170.105  |
+| 791 | Holly      | Munnings       | hmunningsly@xing.com            | Male        | 108.45.195.30   |
+| 851 | Stephanus  | Kruse          | skrusenm@eepurl.com             | Male        | 221.230.176.71  |
+| 921 | Dalt       | Jirak          | djirakpk@kickstarter.com        | Male        | 60.124.237.180  |
+|  11 | Colas      | Titherington   | ctitheringtona@virginia.edu     | Male        | 64.13.148.204   |
+| 171 | Stace      | Tranter        | stranter4q@goo.gl               | Female      | 146.144.241.190 |
+| 241 | Suzanna    | Panichelli     | spanichelli6o@exblog.jp         | Female      | 66.137.138.255  |
+| 311 | Bunny      | Tonkinson      | btonkinson8m@alibaba.com        | Female      | 156.5.154.232   |
+| 391 | Anneliese  | Illyes         | aillyesau@rambler.ru            | Female      | 199.48.172.243  |
+| 471 | Peri       | Weddup         | pweddupd2@noaa.gov              | Genderqueer | 240.90.248.27   |
+| 541 | Anallise   | Fenty          | afentyf0@ifeng.com              | Female      | 134.186.64.111  |
+| 641 | Anastassia | Grogono        | agrogonohs@shinystat.com        | Female      | 0.66.44.119     |
+| 701 | Annabela   | Tape           | atapejg@xing.com                | Female      | 81.24.172.49    |
+| 761 | Lyle       | Hedin          | lhedinl4@independent.co.uk      | Male        | 95.57.160.95    |
+| 861 | Nowell     | Fernan         | nfernannw@ycombinator.com       | Male        | 49.189.6.186    |
+| 931 | Francyne   | McAlinden      | fmcalindenpu@etsy.com           | Female      | 233.188.16.37   |
+| 151 | Bea        | Grigoire       | bgrigoire46@google.com.hk       | Female      | 120.211.38.45   |
+| 221 | Duane      | Greenleaf      | dgreenleaf64@blogs.com          | Male        | 52.12.54.108    |
+| 301 | Etty       | Kitchaside     | ekitchaside8c@adobe.com         | Non-binary  | 50.242.16.75    |
+| 381 | Calida     | Baskeyfield    | cbaskeyfieldak@sfgate.com       | Female      | 71.98.162.191   |
+| 451 | Fraze      | Balcock        | fbalcockci@desdev.cn            | Male        | 204.60.109.23   |
+| 511 | Ann        | Ashpole        | aashpolee6@artisteer.com        | Polygender  | 19.181.209.15   |
+| 601 | Sofia      | Wigley         | swigleygo@mapy.cz               | Female      | 194.176.102.73  |
+| 671 | Jewell     | Janoschek      | jjanoschekim@hostgator.com      | Female      | 167.81.15.8     |
+| 731 | Graehme    | Furmedge       | gfurmedgeka@dailymail.co.uk     | Male        | 188.194.162.35  |
+|  81 | Sloane     | Gammett        | sgammett28@utexas.edu           | Male        | 154.216.188.11  |
+| 881 | Ericka     | Buxcey         | ebuxceyog@bloglines.com         | Female      | 15.237.170.209  |
+| 961 | Nari       | Robarts        | nrobartsqo@tripod.com           | Female      | 255.85.29.24    |
+|   1 | Winne      | Antuoni        | wantuoni0@parallels.com         | Female      | 20.1.161.205    |
+|  21 | Gwendolyn  | Izkoveski      | gizkoveskik@thetimes.co.uk      | Female      | 152.170.183.70  |
+| 281 | Ware       | Izkovicz       | wizkovicz7s@sciencedirect.com   | Male        | 165.215.47.164  |
+| 351 | Gerhard    | Gores          | ggores9q@xrea.com               | Male        | 10.215.71.248   |
+| 421 | Braden     | Breagan        | bbreaganbo@domainmarket.com     | Male        | 205.152.131.204 |
+| 501 | Dov        | Giacomello     | dgiacomellodw@bravesites.com    | Male        | 79.38.167.248   |
+| 571 | Quillan    | Triswell       | qtriswellfu@constantcontact.com | Male        | 20.96.229.49    |
+| 661 | Shannan    | Agius          | sagiusic@umn.edu                | Male        | 222.9.95.187    |
+| 691 | Feodora    | Thompkins      | fthompkinsj6@unicef.org         | Female      | 137.152.22.151  |
+| 751 | Abel       | McEnhill       | amcenhillku@ocn.ne.jp           | Male        | 197.192.180.252 |
+| 821 | Mufinella  | Karlsen        | mkarlsenms@pen.io               | Genderqueer | 104.164.239.57  |
+| 901 | Nil        | Prickett       | nprickettp0@google.com.br       | Genderfluid | 62.29.244.127   |
+| 971 | Reese      | Bristowe       | rbristoweqy@uiuc.edu            | Male        | 227.107.66.190  |
+| 111 | Nerissa    | Swansborough   | nswansborough32@seesaa.net      | Female      | 13.240.206.221  |
+| 211 | Eb         | Stair          | estair5u@rambler.ru             | Male        | 72.66.124.199   |
+| 291 | Borden     | Lamblin        | blamblin82@desdev.cn            | Agender     | 31.137.23.0     |
+| 361 | Maurits    | Pawfoot        | mpawfoota0@narod.ru             | Male        | 13.107.108.14   |
+| 431 | Sigismond  | Descroix       | sdescroixby@spiegel.de          | Male        | 105.216.94.233  |
+| 521 | Sharon     | Shiell         | sshielleg@naver.com             | Female      | 246.192.115.73  |
+| 591 | Booth      | Klimecki       | bklimeckige@fc2.com             | Male        | 84.208.241.85   |
+| 631 | Maurie     | Geldard        | mgeldardhi@nymag.com            | Male        | 177.216.21.48   |
+| 711 | Siouxie    | Merrydew       | smerrydewjq@netvibes.com        | Female      | 52.85.7.29      |
+| 781 | Harris     | Lergan         | hlerganlo@time.com              | Male        | 121.72.44.64    |
+| 841 | Alvy       | Cockran        | acockrannc@latimes.com          | Male        | 253.235.49.131  |
+|  91 | Manolo     | Ferminger      | mferminger2i@upenn.edu          | Male        | 151.245.155.99  |
+| 981 | Dean       | Gres           | dgresr8@php.net                 | Male        | 98.150.229.243  |
+| 141 | Walden     | Kermitt        | wkermitt3w@senate.gov           | Male        | 76.241.27.200   |
+| 201 | Shandeigh  | Sissons        | ssissons5k@bandcamp.com         | Female      | 41.22.110.169   |
+| 271 | Johannah   | Base           | jbase7i@over-blog.com           | Agender     | 171.63.38.8     |
+| 341 | Wilie      | Munnis         | wmunnis9g@answers.com           | Female      | 76.113.73.34    |
+| 411 | Tamas      | Rabbitt        | trabbittbe@sbwire.com           | Male        | 13.35.28.167    |
+| 491 | Burk       | Caps           | bcapsdm@deviantart.com          | Male        | 110.109.246.62  |
+| 561 | Brandise   | Fewlass        | bfewlassfk@usgs.gov             | Female      | 106.85.51.39    |
+| 651 | Vasily     | Connell        | vconnelli2@mtv.com              | Male        | 87.78.109.78    |
+| 741 | Kimbell    | Blennerhassett | kblennerhassettkk@ted.com       | Male        | 101.135.144.175 |
+| 811 | Whitney    | Hinkes         | whinkesmi@biglobe.ne.jp         | Female      | 104.165.115.53  |
+| 891 | Micaela    | Epsley         | mepsleyoq@hostgator.com         | Bigender    | 158.152.149.76  |
+| 951 | Corby      | Lowerson       | clowersonqe@unc.edu             | Male        | 82.16.235.167   |
+| 131 | Tanitansy  | Gherarducci    | tgherarducci3m@plala.or.jp      | Female      | 129.32.117.112  |
+| 191 | Kirk       | Sancto         | ksancto5a@reuters.com           | Male        | 176.48.81.66    |
+| 261 | Oneida     | Vsanelli       | ovsanelli78@plala.or.jp         | Female      | 45.194.141.76   |
+| 331 | Israel     | Langcastle     | ilangcastle96@tripadvisor.com   | Male        | 57.127.170.69   |
+|  41 | Yolanda    | Jerrim         | yjerrim14@slate.com             | Female      | 87.60.250.163   |
+| 481 | Nara       | McGahey        | nmcgaheydc@yelp.com             | Female      | 13.183.13.78    |
+| 551 | Gabriel    | Jecock         | gjecockfa@google.it             | Male        | 71.72.205.237   |
+| 611 | Nichols    | Geindre        | ngeindregy@webs.com             | Male        | 194.192.237.127 |
+|  71 | Matti      | Scurr          | mscurr1y@ihg.com                | Female      | 77.16.237.213   |
+| 771 | Jedidiah   | Hallows        | jhallowsle@redcross.org         | Male        | 170.49.33.141   |
+| 831 | Wadsworth  | Crasford       | wcrasfordn2@upenn.edu           | Male        | 26.11.124.213   |
+| 911 | Corabelle  | Wayper         | cwayperpa@biglobe.ne.jp         | Female      | 145.89.201.167  |
+| 991 | Towney     | Tomasoni       | ttomasoniri@wikispaces.com      | Male        | 120.88.4.230    |
+| 161 | Brana      | Bowie          | bbowie4g@arizona.edu            | Female      | 119.186.91.47   |
+| 231 | Deena      | McGall         | dmcgall6e@hp.com                | Female      | 131.255.211.44  |
+|  31 | Sib        | Lawlee         | slawleeu@un.org                 | Genderfluid | 135.124.75.20   |
+| 371 | Vivyan     | Skyppe         | vskyppeaa@reference.com         | Female      | 168.184.149.64  |
+| 441 | Scot       | Pairpoint      | spairpointc8@blogspot.com       | Male        | 188.153.195.93  |
+|  51 | Shanan     | Warrender      | swarrender1e@amazonaws.com      | Male        | 181.233.150.40  |
+| 581 | Obadiah    | Morfell        | omorfellg4@gov.uk               | Male        | 115.14.221.117  |
+| 621 | Miquela    | Borton         | mbortonh8@studiopress.com       | Female      | 112.67.4.15     |
+| 721 | Andriana   | Picard         | apicardk0@biblegateway.com      | Female      | 86.2.229.179    |
+| 801 | Ingelbert  | Osbourne       | iosbournem8@phoca.cz            | Male        | 94.120.46.5     |
+| 871 | Carey      | Benesevich     | cbenesevicho6@themeforest.net   | Male        | 123.65.221.197  |
+| 941 | Gustavo    | Gerran         | ggerranq4@washington.edu        | Male        | 106.92.244.190  |
++-----+------------+----------------+---------------------------------+-------------+-----------------+
+99 Row(s) produced. Time Elapsed: 0.383s
+
+darko#FF_23_WH@FF_23.PUBLIC> select * from FF_TABLE order by id;
+
++-----+------------+----------------+---------------------------------+-------------+-----------------+
+|  ID | FIRST_NAME | LAST_NAME      | EMAIL                           | GENDER      | IP_ADDRESS      |
+|-----+------------+----------------+---------------------------------+-------------+-----------------|
+|   1 | Winne      | Antuoni        | wantuoni0@parallels.com         | Female      | 20.1.161.205    |
+|  11 | Colas      | Titherington   | ctitheringtona@virginia.edu     | Male        | 64.13.148.204   |
+|  21 | Gwendolyn  | Izkoveski      | gizkoveskik@thetimes.co.uk      | Female      | 152.170.183.70  |
+|  31 | Sib        | Lawlee         | slawleeu@un.org                 | Genderfluid | 135.124.75.20   |
+|  41 | Yolanda    | Jerrim         | yjerrim14@slate.com             | Female      | 87.60.250.163   |
+|  51 | Shanan     | Warrender      | swarrender1e@amazonaws.com      | Male        | 181.233.150.40  |
+|  61 | Nigel      | Drury          | ndrury1o@senate.gov             | Male        | 195.145.93.187  |
+|  71 | Matti      | Scurr          | mscurr1y@ihg.com                | Female      | 77.16.237.213   |
+|  81 | Sloane     | Gammett        | sgammett28@utexas.edu           | Male        | 154.216.188.11  |
+|  91 | Manolo     | Ferminger      | mferminger2i@upenn.edu          | Male        | 151.245.155.99  |
+| 111 | Nerissa    | Swansborough   | nswansborough32@seesaa.net      | Female      | 13.240.206.221  |
+| 121 | Elizabet   | Coyish         | ecoyish3c@tmall.com             | Female      | 62.162.178.53   |
+| 131 | Tanitansy  | Gherarducci    | tgherarducci3m@plala.or.jp      | Female      | 129.32.117.112  |
+| 141 | Walden     | Kermitt        | wkermitt3w@senate.gov           | Male        | 76.241.27.200   |
+| 151 | Bea        | Grigoire       | bgrigoire46@google.com.hk       | Female      | 120.211.38.45   |
+| 161 | Brana      | Bowie          | bbowie4g@arizona.edu            | Female      | 119.186.91.47   |
+| 171 | Stace      | Tranter        | stranter4q@goo.gl               | Female      | 146.144.241.190 |
+| 181 | Red        | Patterfield    | rpatterfield50@biblegateway.com | Male        | 76.206.162.242  |
+| 191 | Kirk       | Sancto         | ksancto5a@reuters.com           | Male        | 176.48.81.66    |
+| 201 | Shandeigh  | Sissons        | ssissons5k@bandcamp.com         | Female      | 41.22.110.169   |
+| 211 | Eb         | Stair          | estair5u@rambler.ru             | Male        | 72.66.124.199   |
+| 221 | Duane      | Greenleaf      | dgreenleaf64@blogs.com          | Male        | 52.12.54.108    |
+| 231 | Deena      | McGall         | dmcgall6e@hp.com                | Female      | 131.255.211.44  |
+| 241 | Suzanna    | Panichelli     | spanichelli6o@exblog.jp         | Female      | 66.137.138.255  |
+| 251 | Darius     | Hencke         | dhencke6y@foxnews.com           | Male        | 238.39.103.10   |
+| 261 | Oneida     | Vsanelli       | ovsanelli78@plala.or.jp         | Female      | 45.194.141.76   |
+| 271 | Johannah   | Base           | jbase7i@over-blog.com           | Agender     | 171.63.38.8     |
+| 281 | Ware       | Izkovicz       | wizkovicz7s@sciencedirect.com   | Male        | 165.215.47.164  |
+| 291 | Borden     | Lamblin        | blamblin82@desdev.cn            | Agender     | 31.137.23.0     |
+| 301 | Etty       | Kitchaside     | ekitchaside8c@adobe.com         | Non-binary  | 50.242.16.75    |
+| 311 | Bunny      | Tonkinson      | btonkinson8m@alibaba.com        | Female      | 156.5.154.232   |
+| 321 | Ganny      | Mesias         | gmesias8w@bloomberg.com         | Male        | 251.219.131.2   |
+| 331 | Israel     | Langcastle     | ilangcastle96@tripadvisor.com   | Male        | 57.127.170.69   |
+| 341 | Wilie      | Munnis         | wmunnis9g@answers.com           | Female      | 76.113.73.34    |
+| 351 | Gerhard    | Gores          | ggores9q@xrea.com               | Male        | 10.215.71.248   |
+| 361 | Maurits    | Pawfoot        | mpawfoota0@narod.ru             | Male        | 13.107.108.14   |
+| 371 | Vivyan     | Skyppe         | vskyppeaa@reference.com         | Female      | 168.184.149.64  |
+| 381 | Calida     | Baskeyfield    | cbaskeyfieldak@sfgate.com       | Female      | 71.98.162.191   |
+| 391 | Anneliese  | Illyes         | aillyesau@rambler.ru            | Female      | 199.48.172.243  |
+| 401 | Taffy      | Lomond         | tlomondb4@sciencedirect.com     | Female      | 14.166.35.5     |
+| 411 | Tamas      | Rabbitt        | trabbittbe@sbwire.com           | Male        | 13.35.28.167    |
+| 421 | Braden     | Breagan        | bbreaganbo@domainmarket.com     | Male        | 205.152.131.204 |
+| 431 | Sigismond  | Descroix       | sdescroixby@spiegel.de          | Male        | 105.216.94.233  |
+| 441 | Scot       | Pairpoint      | spairpointc8@blogspot.com       | Male        | 188.153.195.93  |
+| 451 | Fraze      | Balcock        | fbalcockci@desdev.cn            | Male        | 204.60.109.23   |
+| 461 | Krisha     | Fishburn       | kfishburncs@oracle.com          | Male        | 109.254.152.207 |
+| 471 | Peri       | Weddup         | pweddupd2@noaa.gov              | Genderqueer | 240.90.248.27   |
+| 481 | Nara       | McGahey        | nmcgaheydc@yelp.com             | Female      | 13.183.13.78    |
+| 491 | Burk       | Caps           | bcapsdm@deviantart.com          | Male        | 110.109.246.62  |
+| 501 | Dov        | Giacomello     | dgiacomellodw@bravesites.com    | Male        | 79.38.167.248   |
+| 511 | Ann        | Ashpole        | aashpolee6@artisteer.com        | Polygender  | 19.181.209.15   |
+| 521 | Sharon     | Shiell         | sshielleg@naver.com             | Female      | 246.192.115.73  |
+| 531 | Irvin      | Burdus         | iburduseq@uiuc.edu              | Male        | 24.51.37.210    |
+| 541 | Anallise   | Fenty          | afentyf0@ifeng.com              | Female      | 134.186.64.111  |
+| 551 | Gabriel    | Jecock         | gjecockfa@google.it             | Male        | 71.72.205.237   |
+| 561 | Brandise   | Fewlass        | bfewlassfk@usgs.gov             | Female      | 106.85.51.39    |
+| 571 | Quillan    | Triswell       | qtriswellfu@constantcontact.com | Male        | 20.96.229.49    |
+| 581 | Obadiah    | Morfell        | omorfellg4@gov.uk               | Male        | 115.14.221.117  |
+| 591 | Booth      | Klimecki       | bklimeckige@fc2.com             | Male        | 84.208.241.85   |
+| 601 | Sofia      | Wigley         | swigleygo@mapy.cz               | Female      | 194.176.102.73  |
+| 611 | Nichols    | Geindre        | ngeindregy@webs.com             | Male        | 194.192.237.127 |
+| 621 | Miquela    | Borton         | mbortonh8@studiopress.com       | Female      | 112.67.4.15     |
+| 631 | Maurie     | Geldard        | mgeldardhi@nymag.com            | Male        | 177.216.21.48   |
+| 641 | Anastassia | Grogono        | agrogonohs@shinystat.com        | Female      | 0.66.44.119     |
+| 651 | Vasily     | Connell        | vconnelli2@mtv.com              | Male        | 87.78.109.78    |
+| 661 | Shannan    | Agius          | sagiusic@umn.edu                | Male        | 222.9.95.187    |
+| 671 | Jewell     | Janoschek      | jjanoschekim@hostgator.com      | Female      | 167.81.15.8     |
+| 681 | Tucky      | Kuhlen         | tkuhleniw@vkontakte.ru          | Male        | 158.67.170.105  |
+| 691 | Feodora    | Thompkins      | fthompkinsj6@unicef.org         | Female      | 137.152.22.151  |
+| 701 | Annabela   | Tape           | atapejg@xing.com                | Female      | 81.24.172.49    |
+| 711 | Siouxie    | Merrydew       | smerrydewjq@netvibes.com        | Female      | 52.85.7.29      |
+| 721 | Andriana   | Picard         | apicardk0@biblegateway.com      | Female      | 86.2.229.179    |
+| 731 | Graehme    | Furmedge       | gfurmedgeka@dailymail.co.uk     | Male        | 188.194.162.35  |
+| 741 | Kimbell    | Blennerhassett | kblennerhassettkk@ted.com       | Male        | 101.135.144.175 |
+| 751 | Abel       | McEnhill       | amcenhillku@ocn.ne.jp           | Male        | 197.192.180.252 |
+| 761 | Lyle       | Hedin          | lhedinl4@independent.co.uk      | Male        | 95.57.160.95    |
+| 771 | Jedidiah   | Hallows        | jhallowsle@redcross.org         | Male        | 170.49.33.141   |
+| 781 | Harris     | Lergan         | hlerganlo@time.com              | Male        | 121.72.44.64    |
+| 791 | Holly      | Munnings       | hmunningsly@xing.com            | Male        | 108.45.195.30   |
+| 801 | Ingelbert  | Osbourne       | iosbournem8@phoca.cz            | Male        | 94.120.46.5     |
+| 811 | Whitney    | Hinkes         | whinkesmi@biglobe.ne.jp         | Female      | 104.165.115.53  |
+| 821 | Mufinella  | Karlsen        | mkarlsenms@pen.io               | Genderqueer | 104.164.239.57  |
+| 831 | Wadsworth  | Crasford       | wcrasfordn2@upenn.edu           | Male        | 26.11.124.213   |
+| 841 | Alvy       | Cockran        | acockrannc@latimes.com          | Male        | 253.235.49.131  |
+| 851 | Stephanus  | Kruse          | skrusenm@eepurl.com             | Male        | 221.230.176.71  |
+| 861 | Nowell     | Fernan         | nfernannw@ycombinator.com       | Male        | 49.189.6.186    |
+| 871 | Carey      | Benesevich     | cbenesevicho6@themeforest.net   | Male        | 123.65.221.197  |
+| 881 | Ericka     | Buxcey         | ebuxceyog@bloglines.com         | Female      | 15.237.170.209  |
+| 891 | Micaela    | Epsley         | mepsleyoq@hostgator.com         | Bigender    | 158.152.149.76  |
+| 901 | Nil        | Prickett       | nprickettp0@google.com.br       | Genderfluid | 62.29.244.127   |
+| 911 | Corabelle  | Wayper         | cwayperpa@biglobe.ne.jp         | Female      | 145.89.201.167  |
+| 921 | Dalt       | Jirak          | djirakpk@kickstarter.com        | Male        | 60.124.237.180  |
+| 931 | Francyne   | McAlinden      | fmcalindenpu@etsy.com           | Female      | 233.188.16.37   |
+| 941 | Gustavo    | Gerran         | ggerranq4@washington.edu        | Male        | 106.92.244.190  |
+| 951 | Corby      | Lowerson       | clowersonqe@unc.edu             | Male        | 82.16.235.167   |
+| 961 | Nari       | Robarts        | nrobartsqo@tripod.com           | Female      | 255.85.29.24    |
+| 971 | Reese      | Bristowe       | rbristoweqy@uiuc.edu            | Male        | 227.107.66.190  |
+| 981 | Dean       | Gres           | dgresr8@php.net                 | Male        | 98.150.229.243  |
+| 991 | Towney     | Tomasoni       | ttomasoniri@wikispaces.com      | Male        | 120.88.4.230    |
++-----+------------+----------------+---------------------------------+-------------+-----------------+
+99 Row(s) produced. Time Elapsed: 0.303s
